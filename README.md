@@ -1,10 +1,9 @@
 # Ruby Style Guide
 
-This is Airbnb's Ruby Style Guide.
+This is Digitpaint's Ruby Style Guide.
 
-It was inspired by [Github's guide][github-ruby] and [Bozhidar Batsov's guide][bbatsov-ruby].
-
-Airbnb also maintains a [JavaScript Style Guide][airbnb-javascript].
+It was inspired by [Github's guide][github-ruby], [Bozhidar Batsov's guide][bbatsov-ruby] and
+[Airbnb's Guide][airbnb-ruby].
 
 ## Table of Contents
   1.  [Whitespace](#whitespace)
@@ -44,7 +43,7 @@ Airbnb also maintains a [JavaScript Style Guide][airbnb-javascript].
 
 * Indent `when` as deep as `case`.
 
-    ```Ruby
+    ```ruby
     case
     when song.name == 'Misty'
       puts 'Not again!'
@@ -94,7 +93,7 @@ Airbnb also maintains a [JavaScript Style Guide][airbnb-javascript].
 * Use spaces around operators; after commas, colons, and semicolons; and around
   `{` and before `}`.
 
-    ```Ruby
+    ```ruby
     sum = 1 + 2
     a, b = 1, 2
     1 > 2 ? true : false; puts 'Hi'
@@ -103,7 +102,7 @@ Airbnb also maintains a [JavaScript Style Guide][airbnb-javascript].
 
 * No spaces after `(`, `[` or before `]`, `)`.
 
-    ```Ruby
+    ```ruby
     some(arg).other
     [1, 2, 3].length
     ```
@@ -218,7 +217,7 @@ end
 > remember: while comments are very important, the best code is
 > self-documenting. Giving sensible names to types and variables is much better
 > than using obscure names that you must then explain through comments.
-
+>
 > When writing your comments, write for your audience: the next contributor who
 > will need to understand your code. Be generous — the next one may be you!
 
@@ -401,7 +400,7 @@ Never leave commented-out code in our codebase.
 * Use `def` with parentheses when there are arguments. Omit the
   parentheses when the method doesn't accept any arguments.
 
-     ```Ruby
+     ```ruby
      def some_method
        # body omitted
      end
@@ -413,7 +412,7 @@ Never leave commented-out code in our codebase.
 
 * Do not use default arguments. Use an options hash instead.
 
-    ```Ruby
+    ```ruby
     # bad
     def obliterate(things, gently = true, except = [], at = Time.now)
       ...
@@ -458,7 +457,7 @@ Never leave commented-out code in our codebase.
 
 * Never put a space between a method name and the opening parenthesis.
 
-    ```Ruby
+    ```ruby
     # bad
     f (3 + 2) + 1
 
@@ -466,7 +465,9 @@ Never leave commented-out code in our codebase.
     f(3 + 2) + 1
     ```
 
-**Omit parentheses** for a method call if the method accepts no arguments.
+**Omit parentheses** for a method call:
+
+* If the method accepts no arguments.
 
     ```ruby
     # bad
@@ -476,7 +477,8 @@ Never leave commented-out code in our codebase.
     nil?
     ```
 
-If the method doesn't return a value (or we don't care about the return), parentheses are optional. (Especially if the arguments overflow to multiple lines, parentheses may add readability.)
+* If the method doesn't return a value (or we don't care about the return),
+  parentheses are optional. (Especially if the arguments overflow to multiple lines, parentheses may add readability.)
 
     ```ruby
     # okay
@@ -505,7 +507,7 @@ In either case:
 
 * Never use `then` for multi-line `if/unless`.
 
-    ```Ruby
+    ```ruby
     # bad
     if some_condition then
       ...
@@ -523,7 +525,7 @@ In either case:
   condition is simple, and the whole thing fits on one line. Otherwise,
   avoid modifier `if/unless`.
 
-    ```Ruby
+    ```ruby
     # bad - this doesn't fit on one line
     add_trebuchet_experiments_on_page(request_opts[:trebuchet_experiments_on_page]) if request_opts[:trebuchet_experiments_on_page] && !request_opts[:trebuchet_experiments_on_page].empty?
 
@@ -543,7 +545,7 @@ In either case:
 
 * Never use `unless` with `else`. Rewrite these with the positive case first.
 
-    ```Ruby
+    ```ruby
     # bad
     unless success?
       puts 'failure'
@@ -561,7 +563,7 @@ In either case:
 
 * Avoid `unless` with multiple conditions.
 
-    ```Ruby
+    ```ruby
       # bad
       unless foo? && bar?
         ...
@@ -577,7 +579,7 @@ In either case:
   unless the condition contains an assignment (see [Using the return
   value of `=`](#syntax) below).
 
-    ```Ruby
+    ```ruby
     # bad
     if (x > 10)
       ...
@@ -600,7 +602,7 @@ In either case:
   extremely trivial. However, do use the ternary operator(`?:`) over
   `if/then/else/end` constructs for single line conditionals.
 
-    ```Ruby
+    ```ruby
     # bad
     result = if some_condition then something else something_else end
 
@@ -612,7 +614,7 @@ In either case:
   also means that ternary operators must not be nested. Prefer
   `if/else` constructs in these cases.
 
-    ```Ruby
+    ```ruby
     # bad
     some_condition ? (nested_condition ? nested_something : nested_something_else) : something_else
 
@@ -634,7 +636,7 @@ In either case:
   doesn't introduce a new scope (unlike `each`) and variables defined
   in its block will be visible outside it.
 
-    ```Ruby
+    ```ruby
     arr = [1, 2, 3]
 
     # bad
@@ -653,7 +655,7 @@ In either case:
   definitions" (e.g. in Rakefiles and certain DSLs).  Avoid `do...end`
   when chaining.
 
-    ```Ruby
+    ```ruby
     names = ["Bozhidar", "Steve", "Sarah"]
 
     # good
@@ -679,7 +681,7 @@ In either case:
 
 * Avoid `return` where not required.
 
-    ```Ruby
+    ```ruby
     # bad
     def some_method(some_arr)
       return some_arr.size
@@ -694,7 +696,7 @@ In either case:
 * Using the return value of `=` (an assignment) is ok, but surround the
   assignment with parenthesis.
 
-    ```Ruby
+    ```ruby
     # good - shows intented use of assignment
     if (v = array.grep(/foo/))
       ...
@@ -713,7 +715,7 @@ In either case:
 
 * Use `||=` freely to initialize variables.
 
-    ```Ruby
+    ```ruby
     # set name to Bozhidar, only if it's nil or false
     name ||= 'Bozhidar'
     ```
@@ -721,7 +723,7 @@ In either case:
 * Don't use `||=` to initialize boolean variables. (Consider what
   would happen if the current value happened to be `false`.)
 
-    ```Ruby
+    ```ruby
     # bad - would set enabled to true even if it was false
     enabled ||= true
 
@@ -787,7 +789,7 @@ In either case:
 * Avoid the usage of class (`@@`) variables due to their "nasty" behavior
 in inheritance.
 
-    ```Ruby
+    ```ruby
     class Parent
       @@class_var = 'parent'
 
@@ -810,7 +812,7 @@ in inheritance.
 * Use `def self.method` to define singleton methods. This makes the methods
   more resistant to refactoring changes.
 
-    ```Ruby
+    ```ruby
     class TestClass
       # bad
       def TestClass.some_method
@@ -825,7 +827,7 @@ in inheritance.
 * Avoid `class << self` except when necessary, e.g. single accessors and aliased
   attributes.
 
-    ```Ruby
+    ```ruby
     class TestClass
       # bad
       class << self
@@ -857,7 +859,7 @@ in inheritance.
 * Indent the `public`, `protected`, and `private` methods as much the
   method definitions they apply to. Leave one blank line above them.
 
-    ```Ruby
+    ```ruby
     class SomeClass
       def public_method
         # ...
@@ -874,7 +876,7 @@ in inheritance.
 
 * Don't use exceptions for flow of control.
 
-    ```Ruby
+    ```ruby
     # bad
     begin
       n / d
@@ -892,7 +894,7 @@ in inheritance.
 
 * Avoid rescuing the `Exception` class.
 
-    ```Ruby
+    ```ruby
     # bad
     begin
       # an exception occurs here
@@ -924,7 +926,7 @@ in inheritance.
 
 * Use symbols instead of strings as hash keys.
 
-    ```Ruby
+    ```ruby
     # bad
     hash = { 'one' => 1, 'two' => 2, 'three' => 3 }
 
@@ -951,7 +953,7 @@ in inheritance.
 
 * Prefer string interpolation instead of string concatenation:
 
-    ```Ruby
+    ```ruby
     # bad
     email_with_name = user.name + ' <' + user.email + '>'
 
@@ -980,7 +982,7 @@ in inheritance.
   Instead, use `String#<<`. Concatenation mutates the string instance in-place
   and is always faster than `String#+`, which creates a bunch of new string objects.
 
-    ```Ruby
+    ```ruby
     # good and also fast
     html = ''
     html << '<h1>Page title</h1>'
@@ -995,7 +997,7 @@ in inheritance.
 * Avoid using `$1-9` as it can be hard to track what they contain. Named groups
   can be used instead.
 
-    ```Ruby
+    ```ruby
     # bad
     /(regexp)/ =~ string
     ...
@@ -1010,7 +1012,7 @@ in inheritance.
 * Be careful with `^` and `$` as they match start/end of line, not string
   endings.  If you want to match the whole string use: `\A` and `\z`.
 
-    ```Ruby
+    ```ruby
     string = "some injection\nusername"
     string[/^username$/]   # matches
     string[/\Ausername\z/] # don't match
@@ -1019,7 +1021,7 @@ in inheritance.
 * Use `x` modifier for complex regexps. This makes them more readable and you
   can add some useful comments. Just be careful as spaces are ignored.
 
-    ```Ruby
+    ```ruby
     regexp = %r{
       start         # some text
       \s            # white space char
@@ -1033,14 +1035,14 @@ in inheritance.
 
 * Use `%w` freely.
 
-    ```Ruby
+    ```ruby
     STATES = %w(draft open closed)
     ```
 
 * Use `%()` for single-line strings which require both interpolation
   and embedded double-quotes. For multi-line strings, prefer heredocs.
 
-    ```Ruby
+    ```ruby
     # bad - no interpolation needed
     %(<div class="text">Some text</div>)
     # should be '<div class="text">Some text</div>'
@@ -1059,7 +1061,7 @@ in inheritance.
 
 * Use `%r` only for regular expressions matching *more than* one '/' character.
 
-    ```Ruby
+    ```ruby
     # bad
     %r(\s+)
 
@@ -1084,7 +1086,7 @@ in inheritance.
     render :text => 'Howdy'
     return
 
-    # still bad
+    # bad
     render :text => 'Howdy' and return if foo.present?
 
     # good
@@ -1101,7 +1103,7 @@ in inheritance.
 > operators, you should too. If their comments have little boxes of hash marks
 > around them, make your comments have little boxes of hash marks around them
 > too.
-
+>
 > The point of having style guidelines is to have a common vocabulary of coding
 > so people can concentrate on what you're saying rather than on how you're
 > saying it. We present global style rules here so people know the vocabulary,
@@ -1111,7 +1113,7 @@ in inheritance.
 
 &mdash;[Google C++ Style Guide][google-c++]
 
-[airbnb-javascript]: https://github.com/airbnb/javascript
+[airbnb-ruby]: https://github.com/airbnb/ruby
 [bbatsov-ruby]: https://github.com/bbatsov/ruby-style-guide
 [github-ruby]: https://github.com/styleguide/ruby
 [google-c++]: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
