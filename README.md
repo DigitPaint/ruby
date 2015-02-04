@@ -405,7 +405,8 @@ Never leave commented-out code in our codebase.
      end
      ```
 
-* Do not use default arguments. Use an options hash instead.
+* Do not use default arguments. Use an options hash instead. With Ruby 2.0+,
+  Keyword Arguments are preferred.
 
     ```ruby
     # bad
@@ -413,7 +414,7 @@ Never leave commented-out code in our codebase.
       ...
     end
 
-    # good
+    # okay
     def obliterate(things, options = {})
       default_options = {
         :gently => true, # obliterate with soft-delete
@@ -422,6 +423,11 @@ Never leave commented-out code in our codebase.
       }
       options.reverse_merge!(default_options)
 
+      ...
+    end
+
+    #good
+    def obliterate(things, gently: true, except: [], at: Time.now)
       ...
     end
     ```
