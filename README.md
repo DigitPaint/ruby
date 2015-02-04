@@ -737,16 +737,6 @@ In either case:
   one-liner scripts is discouraged. Prefer long form versions such as
   `$PROGRAM_NAME`.
 
-* Use `_` for unused block parameters.
-
-    ```Ruby
-    # bad
-    result = hash.map { |k, v| v + 1 }
-
-    # good
-    result = hash.map { |_, v| v + 1 }
-    ```
-
 * When a method block takes only one argument, and the body consists solely of
   reading an attribute or calling one method with no arguments, use the `&:`
   shorthand.
@@ -777,13 +767,6 @@ In either case:
   or the arguments, `exit!`, etc.) should end with an exclamation mark. Bang
   methods should only exist if a non-bang method exists.
   ([More on this][ruby-naming-bang].)
-
-* Name throwaway variables `_`.
-    ```Ruby
-    payment, _ = Payment.complete_paypal_payment!(params[:token],
-                                                  native_currency,
-                                                  created_at)
-    ```
 
 ## Classes
 
