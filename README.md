@@ -228,10 +228,10 @@ Portions of this section borrow heavily from the Google
 
 ### File/class-level comments
 
-Every class definition should have an accompanying comment that describes what
+It's preferred that every class definition has an accompanying comment that describes what
 it is for and how it should be used.
 
-A file that contains zero classes or more than one class should have a comment
+A file that contains zero classes or more than one class may have a comment
 at the top describing its contents.
 
 ```ruby
@@ -266,7 +266,8 @@ module Translation
   end
 ```
 
-All files, including data and config files, should have file-level comments. From ```translation/config/colonial_spelling_variants.yml```:
+Files, including data and config files, may have file-level comments.
+From ```translation/config/colonial_spelling_variants.yml```:
 
 ```ruby
 # List of American-to-British spelling variants.
