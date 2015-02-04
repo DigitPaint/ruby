@@ -287,7 +287,7 @@ neutralization: neutralisation
 
 ### Function comments
 
-Every function declaration should have comments immediately preceding it that
+Every custom function declaration should have comments immediately preceding it that
 describe what the function does and how to use it. These comments should be
 descriptive ("Opens the file") rather than imperative ("Open the file"); the
 comment describes the function, it does not tell the function what to do. In
@@ -301,23 +301,17 @@ all of the following criteria:
 * very short
 * obvious
 
-You may use whatever format you wish. In Ruby, two popular function
-documentation schemes are [TomDoc](http://tomdoc.org/) and
-[YARD](http://rubydoc.info/docs/yard/file/docs/GettingStarted.md). You can also
-just write things out concisely:
+#### YARD
+
+Functions will be documented with [YARD](http://rubydoc.info/docs/yard/file/docs/GettingStarted.md).
 
 ```ruby
-# Returns the fallback locales for the_locale.
-# If opts[:exclude_default] is set, the default locale, which is otherwise
-# always the last one in the returned list, will be excluded.
+# Converts the object into textual markup given a specific format.
 #
-# For example:
-#   fallbacks_for(:"pt-BR")
-#     => [:"pt-BR", :pt, :en]
-#   fallbacks_for(:"pt-BR", :exclude_default => true)
-#     => [:"pt-BR", :pt]
-def fallbacks_for(the_locale, opts = {})
-  ...
+# @param format [Symbol] the format type, `:text` or `:html`
+# @return [String] the object converted into the expected format.
+def to_format(format = :html)
+  # format the object
 end
 ```
 
