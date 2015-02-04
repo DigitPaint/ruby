@@ -808,23 +808,12 @@ in inheritance.
         ...
       end
     ```
-* Avoid `class << self` except when necessary, e.g. single accessors and aliased
-  attributes.
+* Group singleton class methods in the `class << self`.
 
     ```ruby
     class TestClass
+
       # bad
-      class << self
-        def first_method
-          ...
-        end
-
-        def second_method_etc
-          ...
-        end
-      end
-
-      # good
       class << self
         attr_accessor :per_page
         alias_method :nwo, :find_by_name_with_owner
@@ -837,6 +826,21 @@ in inheritance.
       def self.second_method_etc
         ...
       end
+
+      # good
+      class << self
+        attr_accessor :per_page
+        alias_method :nwo, :find_by_name_with_owner
+
+        def first_method
+          ...
+        end
+
+        def second_method_etc
+          ...
+        end
+      end
+
     end
     ```
 
