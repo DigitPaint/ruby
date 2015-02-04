@@ -154,10 +154,12 @@ characters. Notice techniques like:
 ```ruby
 scope = Translation::Phrase.includes(:phrase_translations).
   joins(:phrase_screenshots).
-  where(:phrase_screenshots => {
-    :controller => controller_name,
-    :action => JAROMIR_JAGR_SALUTE,
-  })
+  where(
+    :phrase_screenshots => {
+      :controller => controller_name,
+      :action => JAROMIR_JAGR_SALUTE
+    }
+  )
 ```
 
 ```ruby
@@ -243,11 +245,14 @@ module Translation
   # Australian, New Zealand variations is provided.
   class PrimAndProper
     def initialize
-      @converters = { :en => { :"en-AU" => AmericanToAustralian.new,
-                               :"en-CA" => AmericanToCanadian.new,
-                               :"en-GB" => AmericanToBritish.new,
-                               :"en-NZ" => AmericanToKiwi.new,
-                             } }
+      @converters = {
+        :en => {
+          :"en-AU" => AmericanToAustralian.new,
+          :"en-CA" => AmericanToCanadian.new,
+          :"en-GB" => AmericanToBritish.new,
+          :"en-NZ" => AmericanToKiwi.new
+        }
+      }
     end
 
   ...
@@ -923,9 +928,8 @@ in inheritance.
     hash = { :one => 1, :two => 2, :three => 3 }
     ```
 
-* Use multi-line hashes when it makes the code more readable, and use
-  trailing commas to ensure that parameter changes don't cause
-  extraneous diff lines when the logic has not otherwise changed.
+* Use multi-line hashes when it makes the code more readable, and never use
+  trailing commas.
 
     ```ruby
     hash = {
@@ -934,7 +938,7 @@ in inheritance.
       :controller => :users,
       :action => :set_password,
       :redirect => @redirect_url,
-      :secret => @secret,
+      :secret => @secret
     }
     ```
 
