@@ -339,6 +339,7 @@ def fallbacks_for(the_locale, opts = {})
   if opts[:exclude_default] &&
       ret.last == self.default_locale &&
       ret.last != language_from_locale(the_locale)
+
     ret.pop
   end
 
@@ -493,8 +494,6 @@ Never leave commented-out code in our codebase.
     # okay
     render :partial => 'foo'
     ```
-
-In either case:
 
 * If a method accepts an options hash as the last argument, do not use `{` `}`
   during invocation.
