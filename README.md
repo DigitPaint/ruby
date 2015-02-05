@@ -45,10 +45,10 @@ It was inspired by [Github's guide][github-ruby], [Bozhidar Batsov's guide][bbat
 
     ```ruby
     case
-    when song.name == 'Misty'
-      puts 'Not again!'
+    when song.name == "Misty"
+      puts "Not again!"
     when song.duration > 120
-      puts 'Too long!'
+      puts "Too long!"
     when Time.now.hour > 21
       puts "It's too late"
     else
@@ -56,12 +56,12 @@ It was inspired by [Github's guide][github-ruby], [Bozhidar Batsov's guide][bbat
     end
 
     kind = case year
-           when 1850..1889 then 'Blues'
-           when 1890..1909 then 'Ragtime'
-           when 1910..1929 then 'New Orleans Jazz'
-           when 1930..1939 then 'Swing'
-           when 1940..1950 then 'Bebop'
-           else 'Jazz'
+           when 1850..1889 then "Blues"
+           when 1890..1909 then "Ragtime"
+           when 1910..1929 then "New Orleans Jazz"
+           when 1930..1939 then "Swing"
+           when 1940..1950 then "Bebop"
+           else "Jazz"
            end
     ```
 
@@ -96,7 +96,7 @@ It was inspired by [Github's guide][github-ruby], [Bozhidar Batsov's guide][bbat
     ```ruby
     sum = 1 + 2
     a, b = 1, 2
-    1 > 2 ? true : false; puts 'Hi'
+    1 > 2 ? true : false; puts "Hi"
     [1, 2, 3].each { |e| puts e }
     ```
 
@@ -167,9 +167,9 @@ translation = FactoryGirl.create(
   :phrase_translation,
   locale: :is,
   phrase: phrase,
-  key: 'phone_number_not_revealed_time_zone',
-  value: 'Símanúmerið þitt verður ekki birt. Það er aðeins hægt að hringja á '\
-         'milli 9:00 og 21:00 %{time_zone}.'
+  key: "phone_number_not_revealed_time_zone",
+  value: "Símanúmerið þitt verður ekki birt. Það er aðeins hægt að hringja á "\
+         "milli 9:00 og 21:00 %{time_zone}."
 )
 ```
 
@@ -197,7 +197,7 @@ These code snippets are very much more readable than the alternative:
 ```ruby
 scope = Translation::Phrase.includes(:phrase_translations).joins(:phrase_screenshots).where(phrase_screenshots: { controller: controller_name, action: JAROMIR_JAGR_SALUTE })
 
-translation = FactoryGirl.create(:phrase_translation, locale: :is, phrase: phrase, key: 'phone_number_not_revealed_time_zone', value: 'Símanúmerið þitt verður ekki birt. Það er aðeins hægt að hringja á milli 9:00 og 21:00 %{time_zone}.')
+translation = FactoryGirl.create(:phrase_translation, locale: :is, phrase: phrase, key: "phone_number_not_revealed_time_zone", value: "Símanúmerið þitt verður ekki birt. Það er aðeins hægt að hringja á milli 9:00 og 21:00 %{time_zone}.")
 
 if @reservation_alteration.checkin == @reservation.start_date && @reservation_alteration.checkout == (@reservation.start_date + @reservation.nights)
   redirect_to_alteration @reservation_alteration
@@ -489,10 +489,10 @@ Never leave commented-out code in our codebase.
 
     ```ruby
     # okay
-    render(partial: 'foo')
+    render(partial: "foo")
 
     # okay
-    render partial: 'foo'
+    render partial: "foo"
     ```
 
 * If a method accepts an options hash as the last argument, do not use `{` `}`
@@ -500,10 +500,10 @@ Never leave commented-out code in our codebase.
 
     ```ruby
     # bad
-    get '/v1/reservations', { id: 54875 }
+    get "/v1/reservations", { id: 54875 }
 
     # good
-    get '/v1/reservations', id: 54875
+    get "/v1/reservations", id: 54875
     ```
 
 ## Conditional Expressions
@@ -553,16 +553,16 @@ Never leave commented-out code in our codebase.
     ```ruby
     # bad
     unless success?
-      puts 'failure'
+      puts "failure"
     else
-      puts 'success'
+      puts "success"
     end
 
     # good
     if success?
-      puts 'success'
+      puts "success"
     else
-      puts 'failure'
+      puts "failure"
     end
     ```
 
@@ -722,7 +722,7 @@ Never leave commented-out code in our codebase.
 
     ```ruby
     # set name to Bozhidar, only if it's nil or false
-    name ||= 'Bozhidar'
+    name ||= "Bozhidar"
     ```
 
 * Don't use `||=` to initialize boolean variables. (Consider what
@@ -779,7 +779,7 @@ in inheritance.
 
     ```ruby
     class Parent
-      @@class_var = 'parent'
+      @@class_var = "parent"
 
       def self.print_class_var
         puts @@class_var
@@ -787,7 +787,7 @@ in inheritance.
     end
 
     class Child < Parent
-      @@class_var = 'child'
+      @@class_var = "child"
     end
 
     Parent.print_class_var # => will print "child"
@@ -921,7 +921,7 @@ in inheritance.
 
     ```ruby
     # bad
-    hash = { 'one' => 1, 'two' => 2, 'three' => 3 }
+    hash = { "one" => 1, "two" => 2, "three" => 3 }
 
     # okay
     hash = { :one => 1, :two => 2, :three => 3 }
@@ -935,7 +935,7 @@ in inheritance.
 
     ```ruby
     hash = {
-      protocol: 'https',
+      protocol: "https",
       only_path: false,
       controller: :users,
       action: :set_password,
@@ -945,7 +945,7 @@ in inheritance.
     ```
 
 ## Strings
-
+* Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.
 * Prefer string interpolation instead of string concatenation:
 
     ```ruby
@@ -960,7 +960,7 @@ in inheritance.
     are composing cache keys like this:
 
     ```ruby
-    CACHE_KEY = '_store'
+    CACHE_KEY = "_store"
 
     cache.write(@user.id + CACHE_KEY)
     ```
@@ -968,7 +968,7 @@ in inheritance.
     Prefer instead string interpolation instead of string concatentation:
 
     ```ruby
-    CACHE_KEY = '%d_store'
+    CACHE_KEY = "%d_store"
 
     cache.write(CACHE_KEY % @user.id)
     ```
@@ -979,8 +979,8 @@ in inheritance.
 
     ```ruby
     # good and also fast
-    html = ''
-    html << '<h1>Page title</h1>'
+    html = ""
+    html << "<h1>Page title</h1>"
 
     paragraphs.each do |paragraph|
       html << "<p>#{paragraph}</p>"
@@ -1075,18 +1075,18 @@ in inheritance.
 
     ```ruby
     # bad
-    render text: 'Howdy' and return
+    render text: "Howdy" and return
 
     # good
-    render text: 'Howdy'
+    render text: "Howdy"
     return
 
     # bad
-    render text: 'Howdy' and return if foo.present?
+    render text: "Howdy" and return if foo.present?
 
     # good
     if foo.present?
-      render text: 'Howdy'
+      render text: "Howdy"
       return
     end
     ```
