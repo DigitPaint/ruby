@@ -6,6 +6,7 @@ It was inspired by [Github's guide][github-ruby], [Bozhidar Batsov's guide][bbat
 [Airbnb's Guide][airbnb-ruby].
 
 ## Table of Contents
+  1.  [Tools](#tools)
   1.  [Whitespace](#whitespace)
       1. [Indentation](#indentation)
       1. [Inline](#inline)
@@ -34,6 +35,12 @@ It was inspired by [Github's guide][github-ruby], [Bozhidar Batsov's guide][bbat
   1. [Percent Literals](#percent-literals)
   1. [Rails Specific](#rails)
   1. [Be Consistent](#be-consistent)
+
+## Tools
+
+The [Rubocop][rubocop] gem can be used to lint your code. RuboCop can be controlled with
+the .rubocop.yml configuration file. See [.rubocop.yml](linters/.rubocop.yml) for the config
+of this style guide.
 
 ## Whitespace
 
@@ -1111,6 +1118,7 @@ in inheritance.
 [airbnb-ruby]: https://github.com/airbnb/ruby
 [bbatsov-ruby]: https://github.com/bbatsov/ruby-style-guide
 [github-ruby]: https://github.com/styleguide/ruby
+[rubocop]: http://batsov.com/rubocop/
 [google-c++]: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
 [google-c++-comments]: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Comments
 [google-python-comments]: http://google-styleguide.googlecode.com/svn/trunk/pyguide.html#Comments
